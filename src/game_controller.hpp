@@ -16,7 +16,7 @@ class GameController {
     GameState getGameState() { return gameState; }
 
    private:
-    GameState gameState = GameState::GAME_OVER;
+    GameState gameState = GameState::PLAYING;
     sf::RenderWindow &window;
     int score = 0;
 };

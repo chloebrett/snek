@@ -3,7 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-#include "constants.hpp"
 #include "game_controller.hpp"
 
 class GameOverScreen {
