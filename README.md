@@ -6,7 +6,7 @@ Made in C++ and SFML in a couple of hours.
 
 Screenshots:
 
-![Screenshot 1](res/screenshot-1.jpg)
+<img src="res/screenshot-1.jpg" width=200>
 
 ![Screenshot 2](res/screenshot-2.jpg)
 
