@@ -6,11 +6,11 @@
 #include "constants.hpp"
 #include "game_state.hpp"
 
-GameController::GameController(sf::RenderWindow &window) : window(window) {}
+GameController::GameController(sf::RenderWindow &window) : _window(window) {}
 
 void GameController::restart() {
-    gameState = GameState::PLAYING;
-    score = 0;
+    _gameState = GameState::PLAYING;
+    _score = 0;
 }
 
-void GameController::gameOver() { gameState = GameState::GAME_OVER; }
+void GameController::gameOver() { _gameState = GameState::GAME_OVER; }

@@ -17,13 +17,14 @@ class Player {
    private:
     enum class Direction { UP, DOWN, LEFT, RIGHT };
 
-    GameController &gameController;
-    sf::RenderWindow &window;
-    Food &food;
-    int ticksUntilNextMove = 0;
-    Direction nextDirection = Direction::RIGHT;
-    Direction direction = Direction::RIGHT;
-    std::vector<sf::Vector2i> bodyPositions;
-    float speed = INITIAL_SPEED;  // moves per second
-    void randomizePosition();
+    void _randomizePosition();
+
+    GameController &_gameController;
+    sf::RenderWindow &_window;
+    Food &_food;
+    int _ticksUntilNextMove = 0;
+    Direction _nextDirection = Direction::RIGHT;
+    Direction _direction = Direction::RIGHT;
+    std::vector<sf::Vector2i> _bodyPositions;
+    float _speed = INITIAL_SPEED;  // moves per second
 };

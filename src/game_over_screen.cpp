@@ -7,20 +7,20 @@
 #include "game_state.hpp"
 
 GameOverScreen::GameOverScreen(GameController &gameController, sf::RenderWindow &window)
-    : gameController(gameController), window(window) {
-    font = sf::Font();
-    font.loadFromFile("res/PressStart2P-Regular.ttf");
+    : _gameController(gameController), _window(window) {
+    _font = sf::Font();
+    _font.loadFromFile("res/PressStart2P-Regular.ttf");
 }
 
 void GameOverScreen::onRender() {
     sf::Text topText;
-    topText.setFont(font);
-    topText.setString("GAME OVER. SCORE: " + std::to_string(gameController.getScore()));
+    topText.setFont(_font);
+    topText.setString("GAME OVER. SCORE: " + std::to_string(_gameController.getScore()));
     topText.setCharacterSize(12);
     topText.setFillColor(sf::Color::White);
 
     sf::Text bottomText;
-    bottomText.setFont(font);
+    bottomText.setFont(_font);
     bottomText.setString("PRESS SPACE TO RESTART");
     bottomText.setCharacterSize(12);
     bottomText.setFillColor(sf::Color::White);
@@ -36,12 +36,12 @@ void GameOverScreen::onRender() {
         CELL_SIZE * GRID_WIDTH / 2 - bottomText.getLocalBounds().width / 2,
         CELL_SIZE * GRID_HEIGHT / 2 - bottomText.getLocalBounds().height / 2 + padding);
 
-    window.draw(topText);
-    window.draw(bottomText);
+    _window.draw(topText);
+    _window.draw(bottomText);
 }
 
 void GameOverScreen::onTick() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-        gameController.restart();
+        _gameController.restart();
     }
 }

@@ -12,7 +12,7 @@ class GameOverScreen {
     void onRender();
 
    private:
-    sf::Font font;
-    GameController &gameController;
-    sf::RenderWindow &window;
+    sf::Font _font;
+    GameController &_gameController;
+    sf::RenderWindow &_window;
 };

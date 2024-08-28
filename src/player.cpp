@@ -7,9 +7,9 @@
 #include "game_controller.hpp"
 
 Player::Player(GameController &gameController, sf::RenderWindow &window, Food &food)
-    : gameController(gameController), window(window), food(food) {
-    bodyPositions = {sf::Vector2i(0, 0)};
-    randomizePosition();
+    : _gameController(gameController), _window(window), _food(food) {
+    _bodyPositions = {sf::Vector2i(0, 0)};
+    _randomizePosition();
 }
 
 void Player::onRender() {
@@ -18,35 +18,35 @@ void Player::onRender() {
     rectangle.setSize(sf::Vector2f(CELL_SIZE, CELL_SIZE));
     rectangle.setOutlineColor(sf::Color::Black);
 
-    for (sf::Vector2i position : bodyPositions) {
+    for (sf::Vector2i position : _bodyPositions) {
         rectangle.setPosition(position.x * CELL_SIZE, position.y * CELL_SIZE);
-        window.draw(rectangle);
+        _window.draw(rectangle);
     }
 }
 
 void Player::onTick() {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && direction != Direction::DOWN) {
-        nextDirection = Direction::UP;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && direction != Direction::UP) {
-        nextDirection = Direction::DOWN;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && direction != Direction::RIGHT) {
-        nextDirection = Direction::LEFT;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && direction != Direction::LEFT) {
-        nextDirection = Direction::RIGHT;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _direction != Direction::DOWN) {
+        _nextDirection = Direction::UP;
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _direction != Direction::UP) {
+        _nextDirection = Direction::DOWN;
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && _direction != Direction::RIGHT) {
+        _nextDirection = Direction::LEFT;
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && _direction != Direction::LEFT) {
+        _nextDirection = Direction::RIGHT;
     }
 
-    ticksUntilNextMove--;
-    if (ticksUntilNextMove <= 0) {
-        ticksUntilNextMove = FRAMES_PER_SECOND / speed;
-        direction = nextDirection;
+    _ticksUntilNextMove--;
+    if (_ticksUntilNextMove <= 0) {
+        _ticksUntilNextMove = FRAMES_PER_SECOND / _speed;
+        _direction = _nextDirection;
         handleMove();
     }
 }
 
 void Player::handleMove() {
-    sf::Vector2i headPosition = bodyPositions.front();
+    sf::Vector2i headPosition = _bodyPositions.front();
     sf::Vector2i newHeadPosition = headPosition;
-    switch (direction) {
+    switch (_direction) {
         case Direction::UP:
             newHeadPosition.y--;
             break;
@@ -72,27 +72,27 @@ void Player::handleMove() {
         newHeadPosition.y = 0;
     }
 
-    bodyPositions.insert(bodyPositions.begin(), newHeadPosition);
-    if (food.getPosition() == newHeadPosition) {
-        food.randomizePosition();
-        speed += SPEED_INCREASE;
-        gameController.increaseScore();
+    _bodyPositions.insert(_bodyPositions.begin(), newHeadPosition);
+    if (_food.getPosition() == newHeadPosition) {
+        _food.randomizePosition();
+        _speed += SPEED_INCREASE;
+        _gameController.increaseScore();
     } else {
-        bodyPositions.pop_back();
+        _bodyPositions.pop_back();
     }
 
-    for (int i = 1; i < bodyPositions.size(); i++) {
-        if (bodyPositions[i] == newHeadPosition) {
+    for (int i = 1; i < _bodyPositions.size(); i++) {
+        if (_bodyPositions[i] == newHeadPosition) {
             // Game over!
-            bodyPositions = {sf::Vector2i(0, 0)};
-            food.randomizePosition();
-            speed = INITIAL_SPEED;
-            gameController.gameOver();
+            _bodyPositions = {sf::Vector2i(0, 0)};
+            _food.randomizePosition();
+            _speed = INITIAL_SPEED;
+            _gameController.gameOver();
             break;
         }
     }
 }
 
-void Player::randomizePosition() {
-    bodyPositions = {sf::Vector2i(rand() % GRID_WIDTH, rand() % GRID_HEIGHT)};
+void Player::_randomizePosition() {
+    _bodyPositions = {sf::Vector2i(rand() % GRID_WIDTH, rand() % GRID_HEIGHT)};
 }

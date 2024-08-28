@@ -4,8 +4,8 @@
 
 #include "constants.hpp"
 
-Food::Food(sf::RenderWindow &window) : window(window) {
-    position = {sf::Vector2i(0, 0)};
+Food::Food(sf::RenderWindow &window) : _window(window) {
+    _position = {sf::Vector2i(0, 0)};
     randomizePosition();
 }
 
@@ -14,10 +14,10 @@ void Food::onRender() {
     rectangle.setFillColor(sf::Color::White);
     rectangle.setSize(sf::Vector2f(CELL_SIZE, CELL_SIZE));
     rectangle.setOutlineColor(sf::Color::Black);
-    rectangle.setPosition(position.x * CELL_SIZE, position.y * CELL_SIZE);
-    window.draw(rectangle);
+    rectangle.setPosition(_position.x * CELL_SIZE, _position.y * CELL_SIZE);
+    _window.draw(rectangle);
 }
 
 void Food::randomizePosition() {
-    position = {sf::Vector2i(rand() % GRID_WIDTH, rand() % GRID_HEIGHT)};
+    _position = {sf::Vector2i(rand() % GRID_WIDTH, rand() % GRID_HEIGHT)};
 }

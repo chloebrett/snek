@@ -11,12 +11,12 @@ class GameController {
     GameController(sf::RenderWindow &window);
     void restart();
     void gameOver();
-    void increaseScore() { score++; }
-    int getScore() { return score; }
-    GameState getGameState() { return gameState; }
+    void increaseScore() { _score++; }
+    int getScore() { return _score; }
+    GameState getGameState() { return _gameState; }
 
    private:
-    GameState gameState = GameState::PLAYING;
-    sf::RenderWindow &window;
-    int score = 0;
+    GameState _gameState = GameState::PLAYING;
+    sf::RenderWindow &_window;
+    int _score = 0;
 };
