@@ -12,6 +12,8 @@ class GameOverScreen {
     void onRender();
 
    private:
+    sf::Text _makeText(const std::string &textString);
+
     sf::Font _font;
     GameController &_gameController;
     sf::RenderWindow &_window;

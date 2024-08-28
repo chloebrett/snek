@@ -10,3 +10,9 @@ constexpr int GRID_HEIGHT = 10;
 
 constexpr int SCREEN_WIDTH = CELL_SIZE * GRID_WIDTH;
 constexpr int SCREEN_HEIGHT = CELL_SIZE * GRID_HEIGHT;
+
+constexpr int FONT_SIZE = 12;
+constexpr int TEXT_VERTICAL_PADDING = 10;
+const std::string FONT_PATH = "res/PressStart2P-Regular.ttf";
+const std::string GAME_OVER_TEXT = "GAME OVER. SCORE: ";
+const std::string GAME_OVER_RESTART_TEXT = "PRESS SPACE TO RESTART";

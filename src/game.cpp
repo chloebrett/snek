@@ -21,8 +21,7 @@ void Game::start() {
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
     sf::Time timePerFrame = sf::seconds(1.0f / FRAMES_PER_SECOND);
 
-    GameController gameController = GameController(window);
-
+    GameController gameController(window);
     GameOverScreen gameOverScreen(gameController, window);
     Food food(window);
     Player player(gameController, window, food);
